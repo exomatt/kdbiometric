@@ -166,12 +166,10 @@ public class MainGui extends JFrame {
             public void keyPressed(KeyEvent e) {
                 textFieldDataFromUserKeyPressed(e);
             }
-
             @Override
             public void keyReleased(KeyEvent e) {
                 textFieldDataFromUserKeyReleased(e);
             }
-
             @Override
             public void keyTyped(KeyEvent e) {
                 textFieldDataFromUserKeyTyped(e);
