@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq {par l {seq l {space :p:51:p, par l {comp label1:::p::p, comp textFieldUsername:::p:119:p, comp buttonSave::l:p::p}}, seq l {space :p:118:p, comp label2:::p:500:p}, seq l {space :p:78:p, comp textFieldDataFromUser:::p:646:p}}, space ::84:x}}"
-			"$verticalGroup": "par l {seq l {space :p:16:p, comp label1:::p::p, space :::p, comp textFieldUsername:::p::p, space s:::p, comp buttonSave:::p::p, space :p:30:p, comp label2:::p:54:p, space ::27:x, comp textFieldDataFromUser:::p::p, space :p:234:p}}"
+			"$horizontalGroup": "par l {seq {par l {seq l {space :p:51:p, par l {comp label1:::p::p, comp textFieldUsername:::p:119:p, comp buttonSave::l:p::p}}, seq l {space :p:118:p, comp label2:::p:500:p}, seq l {space :p:275:p, comp buttonReset:::p::p}, seq l {space :p:192:p, comp textFieldDataFromUser:::p:418:p}}, space ::190:x}}"
+			"$verticalGroup": "par l {seq l {space :p:16:p, comp label1:::p::p, space :::p, comp textFieldUsername:::p::p, space s:::p, comp buttonSave:::p::p, space :p:30:p, comp label2:::p:54:p, space ::38:x, comp textFieldDataFromUser:::p::p, space :p:42:p, comp buttonReset:::p::p, space :p:151:p}}"
 		} ) {
 			name: "this"
 			add( new FormComponent( "javax.swing.JTextField" ) {
@@ -15,13 +15,6 @@ new FormModel {
 				name: "label1"
 				"text": "Username"
 			} )
-			add( new FormComponent( "javax.swing.JTextField" ) {
-				name: "textFieldDataFromUser"
-				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "textFieldDataFromUserActionPerformed", true ) )
-				addEvent( new FormEvent( "java.awt.event.KeyListener", "keyPressed", "textFieldDataFromUserKeyPressed", true ) )
-				addEvent( new FormEvent( "java.awt.event.KeyListener", "keyPressed", "textFieldDataFromUserKeyPressed", true ) )
-				addEvent( new FormEvent( "java.awt.event.KeyListener", "keyReleased", "textFieldDataFromUserKeyReleased", true ) )
-			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label2"
 				"text": "ala ma kota kot ma ale sierotka ma rysia a ada ma raka"
@@ -29,6 +22,18 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "buttonSave"
 				"text": "Save"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "buttonSaveActionPerformed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "buttonReset"
+				"text": "reset"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "buttonResetActionPerformed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "textFieldDataFromUser"
+				addEvent( new FormEvent( "java.awt.event.KeyListener", "keyPressed", "textFieldDataFromUserKeyPressed", true ) )
+				addEvent( new FormEvent( "java.awt.event.KeyListener", "keyReleased", "textFieldDataFromUserKeyReleased", true ) )
+				addEvent( new FormEvent( "java.awt.event.KeyListener", "keyTyped", "textFieldDataFromUserKeyTyped", true ) )
 			} )
 			menuBar: new FormContainer( "javax.swing.JMenuBar", new FormLayoutManager( class javax.swing.JMenuBar ) ) {
 				name: "menuBar1"
