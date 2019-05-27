@@ -4,12 +4,41 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {space :0:808:x}"
-			"$verticalGroup": "par l {space :0:513:x}"
+			"$horizontalGroup": "par l {seq {par l {seq l {space :p:51:p, par l {comp label1:::p::p, comp textFieldUsername:::p:119:p, comp buttonSave::l:p::p}}, seq l {space :p:118:p, comp label2:::p:500:p}, seq l {space :p:78:p, comp textFieldDataFromUser:::p:646:p}}, space ::84:x}}"
+			"$verticalGroup": "par l {seq l {space :p:16:p, comp label1:::p::p, space :::p, comp textFieldUsername:::p::p, space s:::p, comp buttonSave:::p::p, space :p:30:p, comp label2:::p:54:p, space ::27:x, comp textFieldDataFromUser:::p::p, space :p:234:p}}"
 		} ) {
 			name: "this"
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "textFieldUsername"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "Username"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "textFieldDataFromUser"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "textFieldDataFromUserActionPerformed", true ) )
+				addEvent( new FormEvent( "java.awt.event.KeyListener", "keyPressed", "textFieldDataFromUserKeyPressed", true ) )
+				addEvent( new FormEvent( "java.awt.event.KeyListener", "keyPressed", "textFieldDataFromUserKeyPressed", true ) )
+				addEvent( new FormEvent( "java.awt.event.KeyListener", "keyReleased", "textFieldDataFromUserKeyReleased", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "ala ma kota kot ma ale sierotka ma rysia a ada ma raka"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "buttonSave"
+				"text": "Save"
+			} )
+			menuBar: new FormContainer( "javax.swing.JMenuBar", new FormLayoutManager( class javax.swing.JMenuBar ) ) {
+				name: "menuBar1"
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "menu1"
+					"text": "text"
+				} )
+			}
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 0, 0 )
+			"location": new java.awt.Point( 220, 15 )
 			"size": new java.awt.Dimension( 810, 545 )
 		} )
 	}
