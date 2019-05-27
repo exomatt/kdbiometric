@@ -10,8 +10,9 @@ public class FileSampleOperations {
 
     public static final String DB = "db/";
 
-    static public void save(String name, List<Sample> samples) throws IOException {
+    static public void save(String className, String name, List<Sample> samples) throws IOException {
         List<String> stringList = samples.stream().map(Sample::toString).collect(Collectors.toList());
+        stringList.add(0, className + ";");
         Files.write(Paths.get(DB + name), stringList);
     }
 }

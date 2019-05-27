@@ -17,7 +17,7 @@ new FormModel {
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label2"
-				"text": "ala ma kota kot ma ale sierotka ma rysia a ada ma raka"
+				"text": "ala ma kota kot ma ale sierotka ma rysia a ada ma raka i pingwina"
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "buttonSave"

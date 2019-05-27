@@ -12,7 +12,6 @@ import utils.Sample;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
@@ -82,13 +81,14 @@ public class MainGui extends JFrame {
         }
         StringBuilder stringBuilder = new StringBuilder();
         sampleList.forEach(p -> stringBuilder.append(p.getLetter()));
-        String regex = "ala ma kota kot ma ale sierotka ma rysia a ada ma raka";
+        String regex = "ala ma kota kot ma ale sierotka ma rysia a ada ma raka i pingwina";
         String userString = stringBuilder.toString().toLowerCase().replaceAll("space", " ");
         System.out.println(userString);
         System.out.println(regex);
         if (userString.matches(regex)) {
             try {
-                FileSampleOperations.save(username + ".txt", sampleList);
+                sampleList = getAverage(sampleList);
+                FileSampleOperations.save(username, username + ".txt", sampleList);
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(this, "Some problems with file !!!!", "Error", JOptionPane.ERROR_MESSAGE);
                 log.severe("File problem" + ex.getMessage() + Arrays.toString(ex.getStackTrace()));
@@ -97,7 +97,27 @@ public class MainGui extends JFrame {
             JOptionPane.showMessageDialog(this, "Text dont match to template :( !!!!", "Error", JOptionPane.ERROR_MESSAGE);
         }
 
+    }
 
+    private List<Sample> getAverage(List<Sample> samples) {
+        List<String> strings = new ArrayList<>();
+        List<Sample> result = new ArrayList<>();
+        for (Sample sample : samples) {
+            long sum = 0;
+            int count = 0;
+            if (strings.contains(sample.getLetter())) {
+                continue;
+            }
+            strings.add(sample.getLetter());
+            for (int i = 0; i < samples.size(); i++) {
+                if (samples.get(i).getLetter().matches(sample.getLetter())) {
+                    sum += sample.getTime();
+                    count++;
+                }
+            }
+            result.add(new Sample(sample.getLetter(), sum / count));
+        }
+        return result;
     }
 
     private void initComponents() {
@@ -130,25 +150,15 @@ public class MainGui extends JFrame {
         label1.setText("Username");
 
         //---- label2 ----
-        label2.setText("ala ma kota kot ma ale sierotka ma rysia a ada ma raka");
+        label2.setText("ala ma kota kot ma ale sierotka ma rysia a ada ma raka i pingwina");
 
         //---- buttonSave ----
         buttonSave.setText("Save");
-        buttonSave.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                buttonSaveActionPerformed(e);
-            }
-        });
+        buttonSave.addActionListener(e -> buttonSaveActionPerformed(e));
 
         //---- buttonReset ----
         buttonReset.setText("reset");
-        buttonReset.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                buttonResetActionPerformed(e);
-            }
-        });
+        buttonReset.addActionListener(e -> buttonResetActionPerformed(e));
 
         //---- textFieldDataFromUser ----
         textFieldDataFromUser.addKeyListener(new KeyAdapter() {
