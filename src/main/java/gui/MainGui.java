@@ -88,7 +88,8 @@ public class MainGui extends JFrame {
         if (userString.matches(regex)) {
             try {
                 sampleList = getAverage(sampleList);
-                FileSampleOperations.save(username, username + ".txt", sampleList);
+                String substringUsername = username.substring(0, username.length() - 1);
+                FileSampleOperations.save(substringUsername, username + ".txt", sampleList);
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(this, "Some problems with file !!!!", "Error", JOptionPane.ERROR_MESSAGE);
                 log.severe("File problem" + ex.getMessage() + Arrays.toString(ex.getStackTrace()));
