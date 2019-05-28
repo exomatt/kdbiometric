@@ -1,4 +1,4 @@
-Mateusz B2;
+Mateusz B;
 A;118
 L;94
 Space;78

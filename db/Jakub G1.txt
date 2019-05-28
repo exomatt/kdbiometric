@@ -1,4 +1,4 @@
-Jakub G1;
+Jakub G;
 A;94
 L;63
 Space;62
