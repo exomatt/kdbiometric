@@ -49,7 +49,7 @@ public class QualityTests {
 
         List<Pair<Double, String>> results = new LinkedList<>();
         for (int i = 0; i < k; i++) {
-            results.add(distancesList.get(i));
+            results.add(distancesList.get(distancesList.size() - i - 1));
         }
 
         List<Triplet> klasaLicznoscSuma = new LinkedList<>();
@@ -211,7 +211,7 @@ public class QualityTests {
         vectorFeaturesList.add(VectorFeatures.getVectorFromFile("slawko2"));
         vectorFeaturesList.add(VectorFeatures.getVectorFromFile("slawko3"));
 
-        System.out.println(qualityTest(vectorFeaturesList, 1, manhattan));
+        System.out.println(qualityTest(vectorFeaturesList, 3, euklides));
     }
 
 }
