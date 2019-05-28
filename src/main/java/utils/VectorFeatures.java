@@ -38,9 +38,9 @@ public class VectorFeatures {
         return new VectorFeatures(klasa, vector);
     }
 
-    public static void main(String[] args) {
-        VectorFeatures przemek1 = getVectorFromFile("przemek1");
-        System.out.println(przemek1.getKlasa());
-        przemek1.getVector().forEach(s -> System.out.println(s.toString()));
-    }
+//    public static void main(String[] args) {
+//        VectorFeatures przemek1 = getVectorFromFile("przemek1");
+//        System.out.println(przemek1.getKlasa());
+//        przemek1.getVector().forEach(s -> System.out.println(s.toString()));
+//    }
 }
