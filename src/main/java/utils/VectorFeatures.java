@@ -20,7 +20,7 @@ public class VectorFeatures {
     public static VectorFeatures getVectorFromFile(String fileName) {
         List<String> strings = null;
         try {
-            strings = Files.readAllLines(Paths.get(FileSampleOperations.DB + fileName + ".txt"));
+            strings = Files.readAllLines(Paths.get(FileSampleOperations.DB + fileName));
         } catch (IOException e) {
             log.severe("Problem with file...");
             e.printStackTrace();

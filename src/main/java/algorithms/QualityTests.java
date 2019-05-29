@@ -1,11 +1,15 @@
 package algorithms;
 
 import javafx.util.Pair;
+import lombok.extern.java.Log;
+import utils.FileSampleOperations;
 import utils.Triplet;
 import utils.VectorFeatures;
 
+import java.io.File;
 import java.util.*;
 
+@Log
 public class QualityTests {
 
     public final static int euklides = 0;
@@ -104,10 +108,11 @@ public class QualityTests {
             } else if (ilosc_dist > 1) {
                 return minDist.getKlasa();//FIXME - to możnaby poprawić, ale mało prawdopodobne że dwa identyczne będą
             } else {
-
+                log.severe("Błąd w liczeniu dystansów");
                 return "COS ZLE W DYSTANSACH";
             }
         } else {
+            log.severe("Błąd w liczeniu ilości");
             return "COS ZLE W ILOSCI";
         }
 
@@ -165,7 +170,7 @@ public class QualityTests {
 
     public static double qualityTest(List<VectorFeatures> vectorFeaturesList, int k, int metryka) {
         //TODO- wywalić potem
-        vectorFeaturesList.forEach(v -> System.out.println(v.toString()));
+//        vectorFeaturesList.forEach(v -> System.out.println(v.toString()));
         double wszystkie_obiekty = vectorFeaturesList.size();
         double klasyfikacje_poprawne = 0;
 
@@ -173,45 +178,58 @@ public class QualityTests {
             List<VectorFeatures> copy = new LinkedList<>(vectorFeaturesList);
             copy.remove(vectorFeatures);
             String predictedClass = kNN(k, vectorFeatures, copy, metryka);
-            System.out.println("predicted: " + predictedClass);
-            System.out.println("powinno byc: " + vectorFeatures.getKlasa());
-            System.out.println();
+//            System.out.println("predicted: " + predictedClass);
+//            System.out.println("powinno byc: " + vectorFeatures.getKlasa());
+//            System.out.println();
             if (predictedClass.matches(vectorFeatures.getKlasa())) klasyfikacje_poprawne++;
         }
 
-        System.out.println(klasyfikacje_poprawne);
+//        System.out.println(klasyfikacje_poprawne);
         return klasyfikacje_poprawne / wszystkie_obiekty;
     }
 
 
     public static void main(String[] args) {
         List<VectorFeatures> vectorFeaturesList = new LinkedList<>();
-        vectorFeaturesList.add(VectorFeatures.getVectorFromFile("damian1"));
-        vectorFeaturesList.add(VectorFeatures.getVectorFromFile("damian2"));
-        vectorFeaturesList.add(VectorFeatures.getVectorFromFile("damian3"));
-        vectorFeaturesList.add(VectorFeatures.getVectorFromFile("exo"));
-        vectorFeaturesList.add(VectorFeatures.getVectorFromFile("exo1"));
-        vectorFeaturesList.add(VectorFeatures.getVectorFromFile("exo3"));
-        vectorFeaturesList.add(VectorFeatures.getVectorFromFile("fire1"));
-        vectorFeaturesList.add(VectorFeatures.getVectorFromFile("fire2"));
-        vectorFeaturesList.add(VectorFeatures.getVectorFromFile("fire3"));
-        vectorFeaturesList.add(VectorFeatures.getVectorFromFile("jacek1"));
-        vectorFeaturesList.add(VectorFeatures.getVectorFromFile("jacek2"));
-        vectorFeaturesList.add(VectorFeatures.getVectorFromFile("jacek3"));
-        vectorFeaturesList.add(VectorFeatures.getVectorFromFile("Jakub G"));
-        vectorFeaturesList.add(VectorFeatures.getVectorFromFile("Jakub G1"));
-        vectorFeaturesList.add(VectorFeatures.getVectorFromFile("Jakub G2"));
-        vectorFeaturesList.add(VectorFeatures.getVectorFromFile("Mateusz B"));
-        vectorFeaturesList.add(VectorFeatures.getVectorFromFile("Mateusz B1"));
-        vectorFeaturesList.add(VectorFeatures.getVectorFromFile("Mateusz B2"));
-        vectorFeaturesList.add(VectorFeatures.getVectorFromFile("przemek1"));
-        vectorFeaturesList.add(VectorFeatures.getVectorFromFile("przemek2"));
-        vectorFeaturesList.add(VectorFeatures.getVectorFromFile("przemek3"));
-        vectorFeaturesList.add(VectorFeatures.getVectorFromFile("slawko1"));
-        vectorFeaturesList.add(VectorFeatures.getVectorFromFile("slawko2"));
-        vectorFeaturesList.add(VectorFeatures.getVectorFromFile("slawko3"));
 
-        System.out.println(qualityTest(vectorFeaturesList, 3, euklides));
+        File folder = new File(FileSampleOperations.DB);
+        File[] files = folder.listFiles();
+        for (File file : files) {
+            String name = file.getName();
+            System.out.println(file.getName());
+            vectorFeaturesList.add(VectorFeatures.getVectorFromFile(name));
+        }
+
+//        vectorFeaturesList.add(VectorFeatures.getVectorFromFile("damian1"));
+//        vectorFeaturesList.add(VectorFeatures.getVectorFromFile("damian2"));
+//        vectorFeaturesList.add(VectorFeatures.getVectorFromFile("damian3"));
+//        vectorFeaturesList.add(VectorFeatures.getVectorFromFile("exo"));
+//        vectorFeaturesList.add(VectorFeatures.getVectorFromFile("exo1"));
+//        vectorFeaturesList.add(VectorFeatures.getVectorFromFile("exo3"));
+//        vectorFeaturesList.add(VectorFeatures.getVectorFromFile("fire1"));
+//        vectorFeaturesList.add(VectorFeatures.getVectorFromFile("fire2"));
+//        vectorFeaturesList.add(VectorFeatures.getVectorFromFile("fire3"));
+//        vectorFeaturesList.add(VectorFeatures.getVectorFromFile("jacek1"));
+//        vectorFeaturesList.add(VectorFeatures.getVectorFromFile("jacek2"));
+//        vectorFeaturesList.add(VectorFeatures.getVectorFromFile("jacek3"));
+//        vectorFeaturesList.add(VectorFeatures.getVectorFromFile("Jakub G"));
+//        vectorFeaturesList.add(VectorFeatures.getVectorFromFile("Jakub G1"));
+//        vectorFeaturesList.add(VectorFeatures.getVectorFromFile("Jakub G2"));
+//        vectorFeaturesList.add(VectorFeatures.getVectorFromFile("Mateusz B"));
+//        vectorFeaturesList.add(VectorFeatures.getVectorFromFile("Mateusz B1"));
+//        vectorFeaturesList.add(VectorFeatures.getVectorFromFile("Mateusz B2"));
+//        vectorFeaturesList.add(VectorFeatures.getVectorFromFile("przemek1"));
+//        vectorFeaturesList.add(VectorFeatures.getVectorFromFile("przemek2"));
+//        vectorFeaturesList.add(VectorFeatures.getVectorFromFile("przemek3"));
+//        vectorFeaturesList.add(VectorFeatures.getVectorFromFile("slawko1"));
+//        vectorFeaturesList.add(VectorFeatures.getVectorFromFile("slawko2"));
+//        vectorFeaturesList.add(VectorFeatures.getVectorFromFile("slawko3"));
+
+        System.out.println(qualityTest(vectorFeaturesList, 1, czebyszew));
+        System.out.println(qualityTest(vectorFeaturesList, 2, czebyszew));
+        System.out.println(qualityTest(vectorFeaturesList, 3, czebyszew));
+        System.out.println(qualityTest(vectorFeaturesList, 4, czebyszew));
+        System.out.println(qualityTest(vectorFeaturesList, 5, czebyszew));
     }
 
 }
